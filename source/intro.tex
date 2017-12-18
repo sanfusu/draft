@@ -9,7 +9,7 @@ of the \Cpp{} programming language. The first such requirement is that
 they implement the language, so this document also
 defines \Cpp{}. Other requirements and relaxations of the first
 requirement appear at various places within this document.\\
-本文档指明 \Cpp{} 编程语言的实现要求。第一个要求是实现该语言，所以文档同样也定义了
+本文档指明 \Cpp{} 编程语言的实现要求。这一要求需要先实现该语言，所以文档同样也定义了
 \Cpp{}。其他要求和第一个要求的放宽会出现在本文档的各种位置中。
 
 \pnum
@@ -40,8 +40,8 @@ constitutes requirements
 of this document. For dated references, only the edition cited applies.
 For undated references, the latest edition of the referenced document
 (including any amendments) applies.\\
-下面的文档被用来参考本文档。对于过时的参考，会有被援引的版本。
-对于未过时参考，使用最新版本的参考文档（包括任何修正）。
+下面的文档被用做本文档的参考。对于过时的参考，只会使用被援引的版本。
+对于未过时参考，则使用最新版本的参考文档（包括任何修正）。
 \begin{itemize}
 \item Ecma International, \doccite{ECMAScript Language Specification},
 Standard Ecma-262, third edition, 1999.
@@ -122,7 +122,7 @@ through \ref{\lastlibchapter} and \ref{depr}. \\
 Terms that are used only in a small portion of this document
 are defined where they are used and italicized where they are
 defined. \\
-只在本文档小范围使用的术语会在需要时定义，并用意大利斜体标识。
+本文档中只是小范围使用的术语会在需要时定义，并用意大利斜体标识。
 
 \indexdefn{access}%
 \definition{access}{defns.access}
@@ -370,7 +370,7 @@ executing. \\
 \indexdefn{unblock}%
 \definition{unblock}{defns.unblock}
 satisfy a condition that one or more blocked threads of execution are waiting for \\
-满足一个或多个被阻塞的线程执行等待的条件
+一个或多个被阻塞的执行线程正在等待满足的条件
 
 \indexdefn{behavior!undefined}%
 \definition{undefined behavior}{defns.undefined}
@@ -619,7 +619,7 @@ abstract machine that corresponds to that implementation (referred to as the
 \tcode{sizeof(int)}）。这些构成了抽象机的参数。
 每一个实现都应当包含描述这些特性以及这方面行为的文档。
 \footnote{本文档还包含条件支持结构和本地化行为。详情请看~\ref{intro.compliance}。}
-这些文档应当定义符合实现的抽象机的实例（。
+这些文档应当定义符合实现的抽象机的实例（参考下文中的 ``corresponding instance''）。
 
 \indextext{behavior!unspecified}%
 \pnum
@@ -630,7 +630,11 @@ function fails to allocate memory\iref{expr.new}). Where possible, this
 document defines a set of allowable behaviors. These
 define the nondeterministic aspects of the abstract machine. An instance
 of the abstract machine can thus have more than one possible execution
-for a given program and a given input.
+for a given program and a given input. \\
+抽象机中其他特定方面和操作在本文档中描述为未制定的（比如，
+如果申请函数申请内存失败时，\grammarterm{new-initializer} 中表达式的计算）。
+如果可能，本文档会定义一系列可被允许的行为。这些定义抽象机非决定性内容。
+以此一个抽象机实例对于一个给定的程序和给定的输入可以有多于一个的可执行行为。
 
 \indextext{behavior!undefined}%
 \pnum
@@ -638,7 +642,9 @@ Certain other operations are described in this document as
 undefined (for example, the effect of
 attempting to modify a const object).
 \begin{note} This document imposes no requirements on the
-behavior of programs that contain undefined behavior. \end{note}
+behavior of programs that contain undefined behavior. \end{note} \\
+其他特定操作在本文档中描述为未定义（比如，尝试修改一个常量对象）。
+\begin{note} 本文档对包含未定义行为的程序的行为不做强制要求。\end{note}
 
 \indextext{program!well-formed}%
 \indextext{behavior!observable}%
@@ -646,49 +652,64 @@ behavior of programs that contain undefined behavior. \end{note}
 A conforming implementation executing a well-formed program shall
 produce the same observable behavior as one of the possible executions
 of the corresponding instance of the abstract machine with the
-same program and the same input.
+same program and the same input. \\
+一个符合规范的实现执行一个符合规范的程序应当为具有相同程序和相同输入的抽象机示例
+提供相同的可观测的行为，以此作为对应的可能的执行情况之一。
 \indextext{behavior!undefined}%
 However, if any such execution contains an undefined operation, this document places no
 requirement on the implementation executing that program with that input
 (not even with regard to operations preceding the first undefined
-operation).
+operation). \\
+但是，如果任何包含未定义行为的执行，本文档对实现执行这种程序和输入不做要求
+（甚至是关于第一个未定义行为之前的操作）
 
 \indextext{conformance requirements}
 \pnum
-The least requirements on a conforming implementation are:
+The least requirements on a conforming implementation are: \\
+一个符合规范的实现的最低要求是：
 \begin{itemize}
 \item
 Accesses through volatile glvalues are evaluated strictly according to the
-rules of the abstract machine.
+rules of the abstract machine. \\
+通过 volatile glvalues 的访问会严格的根据抽象机规则计算。
 \item
 At program termination, all data written into files shall be
 identical to one of the possible results that execution of the program
-according to the abstract semantics would have produced.
+according to the abstract semantics would have produced. \\
+作为程序终止，写入到文件中的数据应当等价于执行程序根据抽象机语义所有能提供的结果中的一个。
 \item
 The input and output dynamics of interactive devices shall take
 place in such a fashion that prompting output is actually delivered before a program waits for input. What constitutes an interactive device is
-\impldef{interactive device}.
+\impldef{interactive device}. \\
+动态交互设备的输入和输出应当在输出提示在程序等待输入之前真实的传达。
+交互设备的构成是\impldef{interactive device}。
 \end{itemize}
 
 These collectively are referred to as the
 \defnx{observable behavior}{behavior!observable} of the program.
 \begin{note} More stringent correspondences between abstract and actual
-semantics may be defined by each implementation. \end{note}
+semantics may be defined by each implementation. \end{note} \\
+这些被统称为一个程序的 \defnx{observable behavior}{behavior!observable}。
+\begin{note}抽象机和实际语义之间更为严苛的对应由每一个具体实现来定义。\end{note}
 
 \pnum
 \indextext{operator!precedence of}%
 \indextext{expression!order of evaluation of}%
 \begin{note} Operators can be regrouped according to the usual
 mathematical rules only where the operators really are associative or
-commutative.\footnote{Overloaded operators are never assumed to be associative or
-commutative. }
-For example, in the following fragment
+commutative.运算符可以根据常规数学的结合律和交换律进行重新组合。
+\footnote{Overloaded operators are never assumed to be associative or
+commutative.\\
+重载过的运算符从不被认为具有结合律或交换律。
+}
+For example, in the following fragment 比如，在下面的代码片段中
 \begin{codeblock}
 int a, b;
 @\commentellip@
 a = a + 32760 + b + 5;
 \end{codeblock}
-the expression statement behaves exactly the same as
+the expression statement behaves exactly the same as \\
+该表达式语句和下面的代码片段表现一样
 \begin{codeblock}
 a = (((a + 32760) + b) + 5);
 \end{codeblock}
@@ -698,14 +719,20 @@ that result is then added to 5 which results in the value assigned to
 \tcode{a}. On a machine in which overflows produce an exception and in
 which the range of values representable by an \tcode{int} is
 \crange{-32768}{+32767}, the implementation cannot rewrite this
-expression as
+expression as \\
+由于这些运算符具有关联性和优先级，因此 \tcode{(a+32760)} 的和会被加到 \tcode{b} 上，
+相应的结果随后被加上 5 ，最后结果被赋予给 \tcode{a}。
+在一个溢出会提供异常的机器上以及 \tcode{int} 的可表示范围为 \crange{-32768}{+32767}，
+则具体实现无法将该表达式重写为：
 \begin{codeblock}
 a = ((a + b) + 32765);
 \end{codeblock}
 since if the values for \tcode{a} and \tcode{b} were, respectively,
 -32754 and -15, the sum \tcode{a + b} would produce an exception while
 the original expression would not; nor can the expression be rewritten
-either as
+either as \\
+这是因为 \tcode{a} 和 \tcode{b} 的值相应为 -32754 和 -15，\tcode{a + b} 的和将提供异常，而原表达式不会；
+表达式也不能重写为
 \begin{codeblock}
 a = ((a + 32765) + b);
 \end{codeblock}
@@ -718,7 +745,11 @@ respectively, 4 and -8 or -17 and 12. However on a machine in which
 overflows do not produce an exception and in which the results of
 overflows are reversible, the above expression statement can be
 rewritten by the implementation in any of the above ways because the
-same result will occur. \end{note}
+same result will occur. \\
+这是因为 \tcode{a} 和 \tcode{b} 的值已经相应的变为 4 和 -8 或者 -17 和 12。
+但是在一个不会提供溢出异常以及溢出结果不可恢复的机器上，
+由于可以提供相同的结果，所以上面的表达式语句可以被具体实现按照上面任意表达式语句重写。
+\end{note}
 
 \rSec1[intro.structure]{Structure of this document}
 
@@ -728,30 +759,40 @@ same result will occur. \end{note}
 \ref{lex} through \ref{cpp} describe the \Cpp{} programming
 language. That description includes detailed syntactic specifications in
 a form described in~\ref{syntax}. For convenience, \ref{gram}
-repeats all such syntactic specifications.
+repeats all such syntactic specifications. \\
+\ref{lex} 到 \ref{cpp} 描述了 \Cpp{} 编程语言。该描述包括在~\ref{syntax}中秒速的句法规范细节。
+为了方便，\ref{gram} 重复了所有的句法规范。
 
 \pnum
 \ref{\firstlibchapter} through \ref{\lastlibchapter} and \ref{depr}
 (the \defn{library clauses}) describe the \Cpp{} standard library.
 That description includes detailed descriptions of the
 entities and macros
-that constitute the library, in a form described in \ref{library}.
+that constitute the library, in a form described in \ref{library}. \\
+\ref{\firstlibchapter} 到 \ref{\lastlibchapter} 和 \ref{depr} 
+（\defn{library clauses} 描述了 \Cpp{} 标准库。
+其描述按照 \ref{library} 中描述的形式包括了构成库的条目以及宏的细节描述）
 
 \pnum
 \ref{implimits} recommends lower bounds on the capacity of conforming
-implementations.
+implementations. \\
+\ref{implimits} 推荐了一致性实现的最低边界容量。
 
 \pnum
 \ref{diff} summarizes the evolution of \Cpp{} since its first
 published description, and explains in detail the differences between
 \Cpp{} and C\@. Certain features of \Cpp{} exist solely for compatibility
-purposes; \ref{depr} describes those features.
+purposes; \ref{depr} describes those features. \\
+\ref{diff} 总结了 \Cpp{} 自器第一版开始的改进，并详细的解释了 \Cpp{} 和 C\@ 之间的不同点。
+\Cpp{} 中的部分特性只是为了解决兼容性而存在；\ref{depr} 描述了这些特性。
 
 \pnum
 Throughout this document, each example is introduced by
 ``\noteintro{Example}'' and terminated by ``\noteoutro{example}''. Each note is
 introduced by ``\noteintro{Note}'' and terminated by ``\noteoutro{note}''. Examples
-and notes may be nested.%
+and notes may be nested. \\ %
+贯穿整个文档，每一个以 ``\noteintro{Example}'' 开头，并以 ``\noteoutro{note}'' 结尾都会引入一个注解。
+示例和注解可能会嵌套。
 \indextext{standard!structure of|)}
 
 \rSec1[syntax]{Syntax notation}
@@ -764,29 +805,42 @@ and characters in \tcode{constant} \tcode{width} type. Alternatives are
 listed on separate lines except in a few cases where a long set of
 alternatives is marked by the phrase ``one of''. If the text of an alternative is too long to fit on a line, the text is continued on subsequent lines indented from the first one.
 An optional terminal or non-terminal symbol is indicated by the subscript
-``\opt{\relax}'', so
+``\opt{\relax}'', so \\
+本文档中使用的记号格式，句法类别使用 \grammarterm{italic} 类型指示。
+可替代的记号使用分离的行列出，除了少数情况下会使用 ``one of'' 标记一个很长的可替代记号列表。
+如果可替代文本无法完全放在一行中，文本会在随后行中从第一个缩进。
+可选终止符或非终止符号由下标``\opt{\relax}''指示，所以
 
 \begin{ncbnf}
 \terminal{\{} \opt{expression} \terminal{\}}
 \end{ncbnf}
 
-indicates an optional expression enclosed in braces.%
+indicates an optional expression enclosed in braces. \\ % 
+指示了一个使用花括弧闭合的可选表达式。
 
 \pnum
 Names for syntactic categories have generally been chosen according to
-the following rules:
+the following rules: \\
+用于句法类别的名字一般会根据下列规则选择：
 \begin{itemize}
 \item \grammarterm{X-name} is a use of an identifier in a context that
 determines its meaning (e.g., \grammarterm{class-name},
-\grammarterm{typedef-name}).
+\grammarterm{typedef-name}). \\
+\grammarterm{X-name} 是由上下文环境决定其意义的标识符（比如，\grammarterm{class-name}, 
+\grammarterm{typedef-name}）。
 \item \grammarterm{X-id} is an identifier with no context-dependent meaning
-(e.g., \grammarterm{qualified-id}).
+(e.g., \grammarterm{qualified-id}). \\
+\grammarterm{X-id} 是不由上下文决定其意义的标识符（比如, \grammarterm{qualified-id}）。
 \item \grammarterm{X-seq} is one or more \grammarterm{X}'s without intervening
 delimiters (e.g., \grammarterm{declaration-seq} is a sequence of
-declarations).
+declarations). \\
+\grammarterm{X-seq} 是一个或多个不被分隔符干扰的 \grammarterm{X}
+（比如，\grammarterm{declaration-seq} 是一个声明序列）。
 \item \grammarterm{X-list} is one or more \grammarterm{X}'s separated by
 intervening commas (e.g., \grammarterm{identifier-list} is a sequence of
-identifiers separated by commas).
+identifiers separated by commas). \\
+\grammarterm{X-list} 是一个或多个被间插逗号分离的 \grammarterm{X}
+（比如，\grammarterm{identifier-list} 是一个被逗号分离的标识符序列）
 \end{itemize}%
 \indextext{notation!syntax|)}
 
