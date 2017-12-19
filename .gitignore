@@ -20,3 +20,4 @@ std-gram.ext
 tools/sections
 *.synctex.gz
 .vscode
+.synctex
