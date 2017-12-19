@@ -1140,7 +1140,9 @@ see~\ref{temp.local}. \end{note}
 \indextext{name hiding}%
 \indextext{hiding|see{name hiding}}%
 A name can be hidden by an explicit declaration of that same name in a
-nested declarative region or derived class\iref{class.member.lookup}.
+nested declarative region or derived class\iref{class.member.lookup}. \\
+一个名字可以通过在嵌套的声明区域中或者派生类\iref{class.member.lookup} 
+中显式声明相同的名字来隐藏。
 
 \pnum
 \indextext{name hiding}%
@@ -1149,7 +1151,10 @@ be hidden by the name of a variable, data member, function, or enumerator declar
 the same scope. If a class or enumeration name and a variable, data member, function,
 or enumerator are declared in the same scope (in any order) with the
 same name, the class or enumeration name is hidden wherever the variable, data member,
-function, or enumerator name is visible.
+function, or enumerator name is visible. \\
+类名\iref{class.name} 或枚举名\iref{dcl.enum} 可以被相同域中声明的变量、数据成员、函数或枚举器的名字
+隐藏。如果一个类或枚举名和一个变量、数据成员、函数、或枚举器以相同名字被声明在同一个域中（以任何顺序），
+只要变量、数据成员、函数或枚举器名字是可见的，类或枚举名都会被隐藏。
 
 \pnum
 In a member function definition, the declaration of a name
@@ -1158,17 +1163,23 @@ hides
 the declaration of a member of the class with the same name;
 see~\ref{basic.scope.class}. The declaration of a member in a derived
 class\iref{class.derived} hides the declaration of a member of
-a base class of the same name; see~\ref{class.member.lookup}.
+a base class of the same name; see~\ref{class.member.lookup}. \\
+在一个成员函数定义中，块域中声明的名字会隐藏具有相同名字的类成员的声明；
+详情请看~\ref{basic.scope.class}。派生类\iref{class.derived}中一个成员的声明会隐藏
+一个基类中具有相同名字的成员声明；详情请看~\ref{class.member.lookup}。
 
 \pnum
 During the lookup of a name qualified by a namespace name, declarations
 that would otherwise be made visible by a \grammarterm{using-directive} can
 be hidden by declarations with the same name in the namespace containing
-the \grammarterm{using-directive}; see~\ref{namespace.qual}.
+the \grammarterm{using-directive}; see~\ref{namespace.qual}. \\
+在查询一个被命名空间名限定的名字时，通过一个 \grammarterm{using-directive} 可见的声明
+可以被包含该 \grammarterm{using-directive} 的命名空间中的相同名隐藏；详情请看~\ref{namespace.qual}。
 
 \pnum
 \indextext{visibility}%
-If a name is in scope and is not hidden it is said to be \defn{visible}.%
+If a name is in scope and is not hidden it is said to be \defn{visible}. \\ %
+如果一个名字在范围之内并且没有被隐藏，则称为 \defn{visible}
 \indextext{scope|)}
 
 \rSec1[basic.lookup]{Name lookup}%
