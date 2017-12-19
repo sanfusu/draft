@@ -122,7 +122,7 @@ through \ref{\lastlibchapter} and \ref{depr}. \\
 Terms that are used only in a small portion of this document
 are defined where they are used and italicized where they are
 defined. \\
-本文档中只是小范围使用的术语会在需要时定义，并用意大利斜体标识。
+本文档中小范围使用的术语会在需要时定义，并用意大利斜体标识。
 
 \indexdefn{access}%
 \definition{access}{defns.access}
@@ -248,7 +248,8 @@ set\iref{lex.charset}. \\
 \defncontext{function or catch clause} object or reference declared as part of a function declaration or
 definition or in the catch clause of an exception handler that
 acquires a value on entry to the function or handler \\
-被声明为一个函数声明一部分的对象或引用或异常处理程序中获取函数入口值的 catch 部分。
+% 被声明为一个函数声明一部分的对象或引用或异常处理程序中获取函数入口值的 catch 部分。
+被声明为一个函数声明或函数定义或作为获取处理程序入口的异常处理程序的 catch 部分中的对象或引用。
 
 \indexdefn{parameter}%
 \indexdefn{parameter!function-like macro}%
@@ -392,8 +393,9 @@ not engender undefined behavior; they are required to be diagnosed.
 Evaluation of a constant expression never exhibits behavior explicitly
 specified as undefined\iref{expr.const}. \\
 当本文档省略行为的任何显示定义或者当一个程序使用了错误的结果或者错误的数据时，可能会发生未定义行为。
-\uwave{允许的未定义行为包括完全忽视带有无法预测结果的情形到在翻译阶段或已标注的环境特性的程序执行
-（带有或者不带有问题的诊断信息）。很多错误的程序结构不会产生未定义行为；他们需要被诊断。}
+允许的未定义行为从完全忽视带有无法预测结果的情形到在在翻译或程序执行期间按文档标注表现出的环境特性
+（带有或者不带有问题的诊断信息），在到翻译或执行终止（带有问题的诊断消息）。
+很多错误的程序结构不会产生未定义行为，但他们需要被诊断。
 常表达式的计算重来不会阻止行为被显示指定为未定义\iref{expr.const}。
 \end{defnote}
 
@@ -473,7 +475,7 @@ that program. \\
 如果一个程序包含本文档中非冲突规则，
 一个符合规范的实现应当在其资源限制内接受并正确的执行
 \footnote{
-    ``正确执行''可以包含未定义行为，取决于正在被处理的数据；
+    ``正确执行''可以包含未定义行为，这取决于正在被处理的数据；
     详情请看 \ref{intro.defs} 和 ~\ref{intro.execution}。
 }该程序。
 \item
@@ -489,7 +491,7 @@ shall issue at least one diagnostic message. \\
 \indextext{behavior!undefined}%
 If a program contains a violation of a rule for which no diagnostic
 is required, this document places no requirement on
-implementations with respect to that program. \
+implementations with respect to that program. \\
 如果一个程序包含不要求诊断的冲突规则，该文档对该程序相关实现不做要求。
 \end{itemize}
 \begin{note}
@@ -509,8 +511,8 @@ For classes and class templates, the library Clauses specify partial
 definitions. Private members\iref{class.access} are not
 specified, but each implementation shall supply them to complete the
 definitions according to the description in the library Clauses. \\
-对于类和类模板，库部分列举部分定义。私有成员\iref{class.access} 没有被列举，
-但是每一个实现都应当根据库部分的描述提供完整的定义。
+对于类和类模板，库部分列举部分定义。私有成员\iref{class.access} 虽未被列举，
+但每一个实现都应当根据库部分的描述提供完整的定义。
 
 \pnum
 For functions, function templates, objects, and values, the library
@@ -524,7 +526,7 @@ The names defined in the library have namespace
 scope\iref{basic.namespace}. A \Cpp{}  translation
 unit\iref{lex.phases} obtains access to these names by including the
 appropriate standard library header\iref{cpp.include}. \\
-库中定义的名字具有命名空间域\iref{basic.namespace}。
+库中定义的名字具有命名空间范围\iref{basic.namespace}。
 一个 \Cpp{} 翻译单元\iref{lex.phases} 
 通过包含恰当的标准库头文件\iref{cpp.include} 来访问这些名字。
 
@@ -582,9 +584,7 @@ The semantic descriptions in this document define a
 parameterized nondeterministic abstract machine. This document
 places no requirement on the structure of conforming
 implementations. In particular, they need not copy or emulate the
-structure of the abstract machine. \\
-本文档所描述的语义定义了参数化非确定性抽象机。本文档对符合规范的实现的结构不做要求。
-特别是，无需复制或模拟抽象机的结构。
+structure of the abstract machine. 
 \indextext{as-if rule}%
 \indextext{behavior!observable}%
 Rather, conforming implementations are required to emulate (only) the observable
@@ -597,12 +597,14 @@ implementation need not evaluate part of an expression if it can deduce that its
 value is not used and that no
 \indextext{side effects}%
 side effects affecting the
-observable behavior of the program are produced.}
-然而，符合规范的实现被要求模拟（也只是这样）下面所解释抽象机中可观测行为。
+observable behavior of the program are produced.}\\
+本文档所描述的语义定义了参数化非确定性抽象机。本文档对符合规范的实现的具体结构不做要求。
+特别是，他们没有必要复制或模拟抽象机的结构。
+然而，符合规范的实现被要求模拟（也仅是）下面所解释的抽象机中可观测的行为
 \footnote{该条款有时候被称为 ``as-if'' 规则，因为实现可以自由的忽视本文档中的任何要求，
 只要结果就能够从程序可观测行为决定，\emph{as if} 已经遵守要求。
 作为实例，如果可以推理出表达式中某个值不会被用到并且没有 \indextext{side effects}%
-副作用会影响到程序提供的可观测行为，则一个实际实现不一定需要计算该表达式的一部分}
+副作用会影响到程序提供的可观测行为，则一个实际实现不一定需要计算该表达式的一部分}。
 
 \indextext{behavior!implementation-defined}%
 \pnum
@@ -617,8 +619,8 @@ abstract machine that corresponds to that implementation (referred to as the
 ``corresponding instance'' below). \\
 抽象机中的特定操作在本文档中描述为 implementation-defined（比如，
 \tcode{sizeof(int)}）。这些构成了抽象机的参数。
-每一个实现都应当包含描述这些特性以及这方面行为的文档。
-\footnote{本文档还包含条件支持结构和本地化行为。详情请看~\ref{intro.compliance}。}
+每一个实现都应当包含描述这些特性以及这方面行为的文档
+\footnote{本文档还包含条件支持结构和本地化行为。详情请看~\ref{intro.compliance}。}。
 这些文档应当定义符合实现的抽象机的实例（参考下文中的 ``corresponding instance''）。
 
 \indextext{behavior!unspecified}%
@@ -631,10 +633,10 @@ document defines a set of allowable behaviors. These
 define the nondeterministic aspects of the abstract machine. An instance
 of the abstract machine can thus have more than one possible execution
 for a given program and a given input. \\
-抽象机中其他特定方面和操作在本文档中描述为未制定的（比如，
-如果申请函数申请内存失败时，\grammarterm{new-initializer} 中表达式的计算）。
-如果可能，本文档会定义一系列可被允许的行为。这些定义抽象机非决定性内容。
-以此一个抽象机实例对于一个给定的程序和给定的输入可以有多于一个的可执行行为。
+抽象机中其他特定方面和操作在本文档中描述为未指定的（比如，
+申请函数申请内存失败时，\grammarterm{new-initializer} 中表达式的计算\iref{expr.new}）。
+如果可能，本文档会定义一系列可被允许的行为。这些定义了抽象机中非决定性内容。
+因此一个抽象机实例对于一个给定的程序和给定的输入可以有多个可能的执行。
 
 \indextext{behavior!undefined}%
 \pnum
@@ -671,7 +673,7 @@ The least requirements on a conforming implementation are: \\
 \item
 Accesses through volatile glvalues are evaluated strictly according to the
 rules of the abstract machine. \\
-通过 volatile glvalues 的访问会严格的根据抽象机规则计算。
+通过 volatile glvalues 的访问需要严格的根据抽象机规则计算。
 \item
 At program termination, all data written into files shall be
 identical to one of the possible results that execution of the program
@@ -681,8 +683,9 @@ according to the abstract semantics would have produced. \\
 The input and output dynamics of interactive devices shall take
 place in such a fashion that prompting output is actually delivered before a program waits for input. What constitutes an interactive device is
 \impldef{interactive device}. \\
-动态交互设备的输入和输出应当在输出提示在程序等待输入之前真实的传达。
-交互设备的构成是\impldef{interactive device}。
+交互设备的输入和输出动态应当按照输出提示在程序等待输入之前真实的传达的风格进行。
+交互设备的构成是 
+\impldef{interactive device}。
 \end{itemize}
 
 These collectively are referred to as the
@@ -690,7 +693,7 @@ These collectively are referred to as the
 \begin{note} More stringent correspondences between abstract and actual
 semantics may be defined by each implementation. \end{note} \\
 这些被统称为一个程序的 \defnx{observable behavior}{behavior!observable}。
-\begin{note}抽象机和实际语义之间更为严苛的对应由每一个具体实现来定义。\end{note}
+\begin{note}抽象机和实际语义之间更为严苛的对应关系由每一个具体实现来定义。\end{note}
 
 \pnum
 \indextext{operator!precedence of}%
