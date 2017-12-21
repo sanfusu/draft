@@ -29,10 +29,8 @@
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[pdftex, final]{graphicx}
-% \usepackage{bxpdfver}
 \usepackage[UTF8]{ctex}    
 \usepackage[pdftex,
-            % xetex,
             unicode=true,
             pdftitle={C++ International Standard},
             pdfsubject={C++ International Standard},
@@ -50,7 +48,6 @@
 \usepackage{memhfixc}     % fix interactions between hyperref and memoir
 \usepackage[active,header=false,handles=false,copydocumentclass=false,generate=std-gram.ext,extract-cmdline={gramSec},extract-env={bnftab,simplebnf,bnf,bnfkeywordtab}]{extract} % Grammar extraction
 
-% \setpdfversion{1.5}
 \pdfminorversion=5
 \pdfcompresslevel=9
 \pdfobjcompresslevel=2
@@ -84,7 +81,7 @@
 
 %%--------------------------------------------------
 %% turn off all ligatures inside \texttt
-% \DisableLigatures{encoding = T1, family = tt*}
+\DisableLigatures{encoding = T1, family = tt*}
 
 \begin{document}
 \chapterstyle{cppstd}
@@ -106,7 +103,7 @@
 
 \include{intro}
 \include{lex}
-\include{basic}
+\include{basic-zh}
 \include{conversions}
 \include{expressions}
 \include{statements}

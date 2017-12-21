@@ -1,0 +1,56 @@
+%!TEX root = std.tex
+
+\newcommand{\secref}[1]{\hyperref[\indexescape{#1}]{\indexescape{#1}}}
+
+% Turn off page numbers for this glossary, they're not useful.
+\newcommand{\swallow}[1]{}
+\changeglossnumformat[xrefdelta]{|swallow}
+
+\newcommand{\oldxref}[2]{\glossary[xrefdelta]{\indexescape{#1}}{#2}}
+\newcommand{\removedxref}[1]{\oldxref{#1}{\textit{removed}}}
+\newcommand{\movedxrefs}[2]{\oldxref{#1}{\textit{see} #2}}
+\newcommand{\movedxref}[2]{\movedxrefs{#1}{\secref{#2}}}
+\newcommand{\movedxrefii}[3]{\movedxrefs{#1}{\secref{#2}, \secref{#3}}}
+\newcommand{\movedxrefiii}[4]{\movedxrefs{#1}{\secref{#2}, \secref{#3}, \secref{#4}}}
+\newcommand{\deprxref}[1]{\oldxref{#1}{\textit{see} \secref{depr.#1}}}
+
+% Removed features.
+%\removedxref{removed.label}
+\removedxref{variant.traits}
+
+% Renamed sections.
+%\movedxref{old.label}{new.label}
+%\movedxrefii{old.label}{new.label.1}{new.label.2}
+%\movedxrefiii{old.label}{new.label.1}{new.label.2}{new.label.3}
+%\movedxrefs{old.label}{new place (eg Table~\ref{tab:blah})}
+
+% P0588 replaced function prototype scope with function parameter scope.
+\movedxref{basic.scope.proto}{basic.scope.param}
+
+\movedxref{utility.from.chars}{charconv.from.chars}
+\movedxref{utility.to.chars}{charconv.to.chars}
+
+% [fs.definitions] and its contents were integrated into the main text.
+% Note that ISO C++17 does not contain the [fs.def.*] subclauses.
+\movedxrefs{fs.definitions}{%
+  \secref{fs.class.path},
+  \secref{fs.conform.os},
+  \secref{fs.general},
+  \secref{fs.path.fmt.cvt},
+  \secref{fs.path.generic},
+  \secref{fs.race.behavior}}
+
+% Single-item array subclauses were dissolved.
+\movedxref{array.size}{array.members}
+\movedxref{array.data}{array.members}
+\movedxref{array.fill}{array.members}
+\movedxref{array.swap}{array.members}
+
+% Contents of [util.smartptr] was integrated into the parent.
+\removedxref{util.smartptr}
+
+% Deprecated free-function atomic access to shared pointers
+\movedxref{util.smartptr.shared.atomic}{depr.util.smartptr.shared.atomic}
+
+% Deprecated features.
+%\deprxref{old.label}  (if moved to depr.old.label, otherwise use \movedxref)

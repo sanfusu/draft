@@ -8,9 +8,7 @@ This document specifies requirements for implementations
 of the \Cpp{} programming language. The first such requirement is that
 they implement the language, so this document also
 defines \Cpp{}. Other requirements and relaxations of the first
-requirement appear at various places within this document.\\
-本文档指明 \Cpp{} 编程语言的实现要求。这一要求需要先实现该语言，所以文档同样也定义了
-\Cpp{}。其他要求和第一个要求的放宽会出现在本文档的各种位置中。
+requirement appear at various places within this document.
 
 \pnum
 \Cpp{} is a general purpose programming language based on the C
@@ -21,11 +19,6 @@ beyond those provided by C, including additional data types,
 classes, templates, exceptions, namespaces, operator
 overloading, function name overloading, references, free store
 management operators, and additional library facilities.%
-\\
-\Cpp{} 是基于 ISO/IEC 9899:2011 \doccite{Programming languages -- C} 
-（此后称之为 \defnx{ C 标准}{C!standard}）所描述的 C 编程语言的一个通用目的编程语言。
-\Cpp{} 提供大量 C 未提供的机制，包括额外的数据类型、类、模板、异常、命名空间、运算符重
-载、函数名重载、引用、释放存储管理操作符和额外的库机制。%
 \indextext{scope|)}
 
 
@@ -39,9 +32,7 @@ in such a way that some or all of their content
 constitutes requirements
 of this document. For dated references, only the edition cited applies.
 For undated references, the latest edition of the referenced document
-(including any amendments) applies.\\
-下面的文档被用做本文档的参考。对于过时的参考，只会使用被援引的版本。
-对于未过时参考，则使用最新版本的参考文档（包括任何修正）。
+(including any amendments) applies.
 \begin{itemize}
 \item Ecma International, \doccite{ECMAScript Language Specification},
 Standard Ecma-262, third edition, 1999.
@@ -66,21 +57,15 @@ is hereinafter called the
 \defnx{C standard library}{C!standard library}.%
 \footnote{With the qualifications noted in \ref{\firstlibchapter}
 through \ref{\lastlibchapter} and in \ref{diff.library}, the C standard
-library is a subset of the \Cpp{} standard library.} \\
-ISO/IEC 9899:2011 第 7 部分描述的库在此后被称为
-\defnx{C 标准库}{C!standard library}。%
-\footnote{需要注意的限制条件是 \ref{\firstlibchapter} 到 \ref{\lastlibchapter}，C 
-标准库是 \Cpp{} 标准库的一个子集。}
+library is a subset of the \Cpp{} standard library.}%
 
 \pnum
 The operating system interface described in ISO/IEC 9945:2003 is
-hereinafter called \defn{POSIX}. \\
-ISO/IEC 9945:2003 中描述的操作系统接口在这以后被称为 \defn{POSIX}
+hereinafter called \defn{POSIX}. 
 
 \pnum
 The ECMAScript Language Specification described in Standard Ecma-262 is
-hereinafter called \defn{ECMA-262}. \\
-Ecma-262 标准中描述的 ECMAScript 语言规范在这以后被称为 \defn{ECMA-262}。
+hereinafter called \defn{ECMA-262}. 
 \indextext{references!normative|)}
 
 \rSec0[intro.defs]{Terms and definitions}
@@ -92,62 +77,47 @@ the terms and definitions
 given in ISO/IEC 2382-1:1993,
 the terms, definitions, and symbols
 given in ISO 80000-2:2009,
-and the following apply. \\
-由于本文当的目的，
-使用 ISO/IEC 2382-1:1993 中给出的术语和定义和 
-ISO 80000-2:2009, 中给出的术语、定义和符号，包括
-下面所给出的术语定义。
+and the following apply. 
 
 \pnum
 ISO and IEC maintain terminological databases
 for use in standardization
-at the following addresses:\\
-ISO 和 IEC 在以下地址中为标准化维护了术语数据库：
+at the following addresses:
 \begin{itemize}
 \item ISO Online browsing platform: available at \url{http://www.iso.org/obp}
-\item ISO 在线浏览平台：\url{http://www.iso.org/obp}
 \item IEC Electropedia: available at \url{http://www.electropedia.org/}
-\item IEC 电气百科 \url{http://www.electropedia.org/}
 \end{itemize}
 
 \pnum
 \ref{definitions}
 defines additional terms that are used only in \ref{library}
-through \ref{\lastlibchapter} and \ref{depr}. \\
-\ref{definitions}
-定义了只在 \ref{library} 到 \ref{\lastlibchapter} 和 \ref{depr} 中
-使用的额外术语。
+through \ref{\lastlibchapter} and \ref{depr}. 
 
 \pnum
 Terms that are used only in a small portion of this document
 are defined where they are used and italicized where they are
-defined. \\
-本文档中小范围使用的术语会在需要时定义，并用意大利斜体标识。
+defined. 
 
 \indexdefn{access}%
 \definition{access}{defns.access}
-\defncontext{execution-time action} read or modify the value of an object \\
-读或修改对象的值
+\defncontext{execution-time action} read or modify the value of an object
 
 \indexdefn{argument}%
 \indexdefn{argument!function call expression}
 \definition{argument}{defns.argument}
 \defncontext{function call expression} expression in the
 comma-separated list bounded by the parentheses\iref{expr.call}
-\uwave{使用圆括弧绑定的逗号分隔列表中的表达式}
 
 \indexdefn{argument}%
 \indexdefn{argument!function-like macro}%
 \definition{argument}{defns.argument.macro}
 \defncontext{function-like macro} sequence of preprocessing tokens in the
-comma-separated list bounded by the parentheses \iref{cpp.replace}\\
-受用圆括弧绑定的分号分隔列表中的预处理记号序列
+comma-separated list bounded by the parentheses \iref{cpp.replace}
 
 \indexdefn{argument}%
 \indexdefn{argument!throw expression}%
 \definition{argument}{defns.argument.throw}
-\defncontext{throw expression} operand of \tcode{throw}\iref{expr.throw} \\
-\tcode{throw}\iref{expr.throw} 的操作数
+\defncontext{throw expression} operand of \tcode{throw}\iref{expr.throw}
 
 \indexdefn{argument}%
 \indexdefn{argument!template instantiation}%
@@ -156,89 +126,66 @@ comma-separated list bounded by the parentheses \iref{cpp.replace}\\
 \grammarterm{constant-expression},
 \grammarterm{type-id}, or
 \grammarterm{id-expression} in the comma-separated
-list bounded by the angle brackets\iref{temp.arg} \\
-以尖括号绑定的逗号分隔列表
+list bounded by the angle brackets\iref{temp.arg}
 
 \indexdefn{block}%
 \definition{block}{defns.block}
 wait for some condition (other than for the implementation to execute
 the execution steps of the thread of execution) to be satisfied before
-continuing execution past the blocking operation \\
-在继续执行阻塞操作之后的操作之前，
-等待一些条件（除了实现来执行线程执行的执行步骤）被满足。
+continuing execution past the blocking operation 
 
 \indexdefn{behavior!conditionally-supported}%
 \definition{conditionally-supported}{defns.cond.supp}
-program construct that an implementation is not required to support \\
-一个实现不做支持要求的程序结构
-
+program construct that an implementation is not required to support
 \begin{defnote}
 Each implementation documents all conditionally-supported
-constructs that it does not support. \\
-每一个实现需要记载所有不支持的条件支持结构。
+constructs that it does not support. 
 \end{defnote}
 
 \indexdefn{message!diagnostic}%
 \definition{diagnostic message}{defns.diagnostic}
 message belonging to an \impldef{diagnostic message} subset of the
-implementation's output messages \\
-属于实现输出消息的实现定义的诊断子集。
-
+implementation's output messages
 \indexdefn{type!dynamic}%
 \definition{dynamic type}{defns.dynamic.type}
 \defncontext{glvalue} type of the most derived object\iref{intro.object} to which the
-glvalue refers \\
-glvalue 指示的最末派生的对象类型
-
+glvalue refers
 \begin{example}
 If a pointer\iref{dcl.ptr} \tcode{p} whose static type is ``pointer to
 class \tcode{B}'' is pointing to an object of class \tcode{D}, derived
 from \tcode{B}\iref{class.derived}, the dynamic type of the
 expression \tcode{*p} is ``\tcode{D}''. References\iref{dcl.ref} are
-treated similarly. \\
-如果一个静态类型为 ``指向类 \tcode{B}'' 的指针\iref{dcl.ptr} \tcode{p} 指向
-一个类型为派生自 \tcode{B}\iref{class.derived} 类 \tcode{D} 的对象，
-表达式 \tcode{*p} 的动态类型是 ``\tcode{D}''。引用的处理和指针相似。
+treated similarly. 
 \end{example}
 
 \indexdefn{type!dynamic}%
 \definition{dynamic type}{defns.dynamic.type.prvalue}
-\defncontext{prvalue} static type of the prvalue expression \\
-prvalue 表达式的静态类型
-
+\defncontext{prvalue} static type of the prvalue expression
 \indexdefn{program!ill-formed}%
 \definition{ill-formed program}{defns.ill.formed}
-program that is not well-formed\iref{defns.well.formed} \\
-形式不良好的程序\iref{defns.well.formed}。
+program that is not well-formed\iref{defns.well.formed}
 
 \indexdefn{behavior!implementation-defined}%
 \definition{implementation-defined behavior}{defns.impl.defined}
 behavior, for a well-formed program construct and correct data, that
-depends on the implementation and that each implementation documents \\
-用来构建形式良好的程序和正确数据行为，依赖于每一个实现和其相应的文档
+depends on the implementation and that each implementation documents
 
 
 \indexdefn{limits!implementation}%
 \definition{implementation limits}{defns.impl.limits}
-restrictions imposed upon programs by the implementation \\
-通过实现强加在程序上的限制条件
-
+restrictions imposed upon programs by the implementation
 \indexdefn{behavior!locale-specific}%
 \definition{locale-specific behavior}{defns.locale.specific}
 behavior that depends on local conventions of nationality, culture, and
-language that each implementation documents \\
-依赖于实现标注的国家、文化和语言的当地惯例
-
+language that each implementation documents
 \indexdefn{character!multibyte}%
 \definition{multibyte character}{defns.multibyte}
 sequence of one or more bytes representing a member of the extended
-character set of either the source or the execution environment \\
-一个或者多个表示源或执行环境的扩展字符集成员的字节序列
+character set of either the source or the execution environment
 
 \begin{defnote}
 The extended character set is a superset of the basic character
-set\iref{lex.charset}. \\
-扩展字符集是基本字符集的一个超集\iref{lex.charset}。
+set\iref{lex.charset}.
 \end{defnote}
 
 \indexdefn{parameter}%
@@ -247,23 +194,19 @@ set\iref{lex.charset}. \\
 \definition{parameter}{defns.parameter}
 \defncontext{function or catch clause} object or reference declared as part of a function declaration or
 definition or in the catch clause of an exception handler that
-acquires a value on entry to the function or handler \\
-% 被声明为一个函数声明一部分的对象或引用或异常处理程序中获取函数入口值的 catch 部分。
-被声明为一个函数声明或函数定义或作为获取处理程序入口的异常处理程序的 catch 部分中的对象或引用。
+acquires a value on entry to the function or handler 
 
 \indexdefn{parameter}%
 \indexdefn{parameter!function-like macro}%
 \definition{parameter}{defns.parameter.macro}
 \defncontext{function-like macro} identifier from
 the comma-separated list bounded by the parentheses immediately
-following the macro name \\
-立即跟在宏名后面，由圆括弧绑定的逗号分隔列表
+following the macro name 
 
 \indexdefn{parameter}%
 \indexdefn{parameter!template}%
 \definition{parameter}{defns.parameter.templ}
-\defncontext{template} member of a \grammarterm{template-parameter-list} \\
-\grammarterm{template-parameter-list} 的成员
+\defncontext{template} member of a \grammarterm{template-parameter-list}
 
 \indexdefn{signature}%
 \definition{signature}{defns.signature}
@@ -272,18 +215,12 @@ name,
 parameter type list\iref{dcl.fct},
 enclosing namespace (if any),
 and
-trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any) \\
-名字，
-参数类型列表\iref{dcl.fct}，
-封闭的命名空间（如果有的话），
-和
-尾随 \grammarterm{requires-clause}\iref{dcl.decl}（如果有的话）
+trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any)
 
 
 \begin{defnote}
 Signatures are used as a basis for
-name mangling and linking. \\
-签字被用作命名识别编码和链接的基础。
+name mangling and linking.
 \end{defnote}
 
 \indexdefn{signature}%
@@ -295,20 +232,12 @@ enclosing namespace (if any),
 return type,
 \grammarterm{template-head},
 and
-trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any) \\
-名字，
-参数类型列表\iref{dcl.fct}，
-封闭的命名空间（如果有的话），
-返回类型，
-\grammarterm{template-head}，
-和
-尾随的 \grammarterm{requires-clause}\iref{dcl.decl}（如果有的话）
+trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any)
 
 \indexdefn{signature}%
 \definition{signature}{defns.signature.spec}
 \defncontext{function template specialization} signature of the template of which it is a specialization
-and its template arguments (whether explicitly specified or deduced) \\
-特殊化模板的签字和其参数（不管是显式指定还是推理出来的）
+and its template arguments (whether explicitly specified or deduced)
 
 \indexdefn{signature}%
 \definition{signature}{defns.signature.member}
@@ -319,14 +248,7 @@ class of which the function is a member,
 \cv-qualifiers (if any),
 \grammarterm{ref-qualifier} (if any),
 and
-trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any) \\
-名字，
-参数类型列表\iref{dcl.fct}，
-成员函数所在的类，
-\cv-qualifiers（如果有的话），
-\grammarterm{ref-qualifier}（如果有的话），
-和
-尾随的 \grammarterm{requires-clause}\iref{dcl.decl}（如果有的话）
+trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any)
 
 \indexdefn{signature}%
 \definition{signature}{defns.signature.member.templ}
@@ -339,45 +261,31 @@ class of which the function is a member,
 return type (if any),
 \grammarterm{template-head},
 and
-trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any) \\
-名字，
-参数类型列表\iref{dcl.fct}，
-成员函数所在的类，
-\cv-qualifiers（如果有的话），
-\grammarterm{ref-qualifier}（如果有的话），
-返回类型（如果有的话），
-和
-尾随的 \grammarterm{requires-clause}\iref{dcl.decl}（如果有的话）
+trailing \grammarterm{requires-clause}\iref{dcl.decl} (if any) 
 
 \indexdefn{signature}%
 \definition{signature}{defns.signature.member.spec}
 \defncontext{class member function template specialization} signature of the member function template
-of which it is a specialization and its template arguments (whether explicitly specified or deduced) \\
-被特殊化的成员函数模板的签字和其模板参数（不管是显式指定还是推理得出）
-
+of which it is a specialization and its template arguments (whether explicitly specified or deduced)
 \indexdefn{type!static}%
 \definition{static type}{defns.static.type}
 type of an expression\iref{basic.types} resulting from
-analysis of the program without considering execution semantics \\
-通过分析程序而不用考虑执行语义的表达式\iref{basic.types} 的类型
+analysis of the program without considering execution semantics 
 
 \begin{defnote}
 The static type of an expression depends only on the form of the program in
 which the expression appears, and does not change while the program is 
-executing. \\
-表达式的静态类型只依赖于表达式在程序中出现的形式，并且在程序执行的时候不会发生改变。
+executing. 
 \end{defnote}
 
 \indexdefn{unblock}%
 \definition{unblock}{defns.unblock}
-satisfy a condition that one or more blocked threads of execution are waiting for \\
-一个或多个被阻塞的执行线程正在等待满足的条件
+satisfy a condition that one or more blocked threads of execution are waiting for
 
 \indexdefn{behavior!undefined}%
 \definition{undefined behavior}{defns.undefined}
 behavior for which this document
-imposes no requirements \\
-本文档没有强制要求的行为
+imposes no requirements
 
 \begin{defnote}
 Undefined behavior may be expected when
@@ -391,32 +299,24 @@ diagnostic message), to terminating a translation or execution (with the
 issuance of a diagnostic message). Many erroneous program constructs do
 not engender undefined behavior; they are required to be diagnosed.
 Evaluation of a constant expression never exhibits behavior explicitly
-specified as undefined\iref{expr.const}. \\
-当本文档省略行为的任何显示定义或者当一个程序使用了错误的结果或者错误的数据时，可能会发生未定义行为。
-允许的未定义行为从完全忽视带有无法预测结果的情形到在在翻译或程序执行期间按文档标注表现出的环境特性
-（带有或者不带有问题的诊断信息），在到翻译或执行终止（带有问题的诊断消息）。
-很多错误的程序结构不会产生未定义行为，但他们需要被诊断。
-常表达式的计算重来不会阻止行为被显示指定为未定义\iref{expr.const}。
+specified as undefined\iref{expr.const}. 
 \end{defnote}
 
 \indexdefn{behavior!unspecified}%
 \definition{unspecified behavior}{defns.unspecified}
 behavior, for a well-formed program construct and correct data, that
-depends on the implementation \\
-依赖于实现，针对于符合规范的程序结构和正确的程序的行为
+depends on the implementation
 
 \begin{defnote}
 The implementation is not required to
 document which behavior occurs. The range of
-possible behaviors is usually delineated by this document. \\
-实现不要求标注出哪些行为会发生。可能的行为范围通常会在本文档中圈出来。
+possible behaviors is usually delineated by this document.
 \end{defnote}
 
 \indexdefn{program!well-formed}%
 \definition{well-formed program}{defns.well.formed}
 \Cpp{}  program constructed according to the syntax rules, diagnosable
-semantic rules, and the one-definition rule\iref{basic.def.odr} \\
-根据语法规则，可诊断语义规则和一个定义原则\iref{basic.def.odr}构造出来的 \Cpp{} 程序
+semantic rules, and the one-definition rule\iref{basic.def.odr}
 \indextext{definitions|)}
 
 \rSec0[intro]{General principles}
@@ -453,54 +353,38 @@ The set of
 consists of all syntactic and semantic rules in this document
 except for those rules containing an explicit notation that
 ``no diagnostic is required'' or which are described as resulting in
-``undefined behavior''. \\
-\defn{diagnosable rules} 集合由本文档中出包含显式 ``no diagnostic is required''
-记号或描述为导致 ``undefined behavior'' 之外的所有句法和语义规则组成。
+``undefined behavior''. 
 
 \pnum
 \indextext{conformance requirements!method of description}%
 Although this document states only requirements on \Cpp{}
 implementations, those requirements are often easier to understand if
 they are phrased as requirements on programs, parts of programs, or
-execution of programs. Such requirements have the following meaning: \\
-尽管本文档只陈述 \Cpp{} 实现上的要求，这些要求如果按照程序要求的措辞来陈述的话
-通常会更易于理解。这样的要求有如下意义：
+execution of programs. Such requirements have the following meaning:
 \begin{itemize}
 \item
 If a program contains no violations of the rules in this
 document, a conforming implementation shall,
 within its resource limits, accept and correctly execute\footnote{``Correct execution'' can include undefined behavior, depending on
 the data being processed; see \ref{intro.defs} and~\ref{intro.execution}.}
-that program. \\
-如果一个程序包含本文档中非冲突规则，
-一个符合规范的实现应当在其资源限制内接受并正确的执行
-\footnote{
-    ``正确执行''可以包含未定义行为，这取决于正在被处理的数据；
-    详情请看 \ref{intro.defs} 和 ~\ref{intro.execution}。
-}该程序。
+that program. 
 \item
 \indextext{message!diagnostic}%
 If a program contains a violation of any diagnosable rule or an occurrence
 of a construct described in this document as ``conditionally-supported'' when
 the implementation does not support that construct, a conforming implementation
-shall issue at least one diagnostic message. \\
-如果一个程序包含任何可诊断规则的一个冲突或者
-出现本文档中描述实现所不支持的 ``条件支持'' 的结构，
-一个符合规范的实现应当发出至少一个诊断消息。
+shall issue at least one diagnostic message. 
 \item
 \indextext{behavior!undefined}%
 If a program contains a violation of a rule for which no diagnostic
 is required, this document places no requirement on
-implementations with respect to that program. \\
-如果一个程序包含不要求诊断的冲突规则，该文档对该程序相关实现不做要求。
+implementations with respect to that program.
 \end{itemize}
 \begin{note}
 During template argument deduction and substitution,
 certain constructs that in other contexts require a diagnostic
 are treated differently;
-see~\ref{temp.deduct}. \\
-在模板参数推测和替换过程中，其他环境下要求被诊断的特定结构会被区别对待。
-详情请看~\ref{temp.deduct}
+see~\ref{temp.deduct}.
 \end{note}
 
 \pnum
@@ -510,36 +394,25 @@ see~\ref{temp.deduct}. \\
 For classes and class templates, the library Clauses specify partial
 definitions. Private members\iref{class.access} are not
 specified, but each implementation shall supply them to complete the
-definitions according to the description in the library Clauses. \\
-对于类和类模板，库部分列举部分定义。私有成员\iref{class.access} 虽未被列举，
-但每一个实现都应当根据库部分的描述提供完整的定义。
+definitions according to the description in the library Clauses. 
 
 \pnum
 For functions, function templates, objects, and values, the library
 Clauses specify declarations. Implementations shall supply definitions
-consistent with the descriptions in the library Clauses. \\
-对于函数，函数模板，对象，和值，库条目规定了声明。
-实现应当使用库条目中的描述提供连续的定义。
+consistent with the descriptions in the library Clauses.
 
 \pnum
 The names defined in the library have namespace
 scope\iref{basic.namespace}. A \Cpp{}  translation
 unit\iref{lex.phases} obtains access to these names by including the
-appropriate standard library header\iref{cpp.include}. \\
-库中定义的名字具有命名空间范围\iref{basic.namespace}。
-一个 \Cpp{} 翻译单元\iref{lex.phases} 
-通过包含恰当的标准库头文件\iref{cpp.include} 来访问这些名字。
+appropriate standard library header\iref{cpp.include}. 
 
 \pnum
 The templates, classes, functions, and objects in the library have
 external linkage\iref{basic.link}. The implementation provides
 definitions for standard library entities, as necessary, while combining
 translation units to form a complete \Cpp{}  program\iref{lex.phases}.%
-\indextext{conformance requirements!library|)} \\
-库中的模板、类、函数和对象拥有外部链接关系\iref{basic.link}。
-当组合翻译单元以形成一个完整的 \Cpp{} 程序\iref{lex.phases} 时。
-实现为标准库条目提供必要的定义。
-
+\indextext{conformance requirements!library|)}
 \pnum
 Two kinds of implementations are defined: a \defn{hosted implementation} and a
 \defn{freestanding implementation}. For a hosted implementation, this
@@ -547,11 +420,7 @@ document defines the set of available libraries. A freestanding
 implementation is one in which execution may take place without the benefit of
 an operating system, and has an \impldef{required libraries for freestanding
 implementation} set of libraries that includes certain language-support
-libraries\iref{compliance}. \\
-定义了两种实现：一个 \defn{hosted implementation} 
-和一个 \defn{freestanding implementation}。
-对于宿主实现，本文档定义了一组可获取的库。独立实现则是无需操作系统提供便利即可执行，
-并且拥有独立实现所要求的库的集合，包括特定语言支持的库\iref{compliance}。
+libraries\iref{compliance}. 
 
 \pnum
 A conforming implementation may have extensions (including
@@ -559,19 +428,12 @@ additional library functions), provided they do not alter the
 behavior of any well-formed program.
 Implementations are required to diagnose programs that use such
 extensions that are ill-formed according to this document.
-Having done so, however, they can compile and execute such programs. \\
-一个符合规范的实现可能会拥有扩展（包括额外的库函数），
-提供的扩展不能更改任何规范的程序。
-实现被要求为那些使用扩展后根据本文档判定为不合规范的程序提供诊断。
-这样做后，要求他们能够编译并能够执行这样的程序。
-
+Having done so, however, they can compile and execute such programs. 
 \pnum
 Each implementation shall include documentation that identifies all
 conditionally-supported constructs\indextext{behavior!conditionally-supported}
 that it does not support and defines all locale-specific characteristics.\footnote{This documentation also defines implementation-defined behavior;
-see~\ref{intro.execution}.} \\
-每一个实现应当包含标识所有不支持的条件支持的结构的以及定义了所有本地化特性的文档。
-\footnote{本文档同样定义了实现定义的行为；详情见~\ref{intro.execution}。}
+see~\ref{intro.execution}.}
 \indextext{conformance requirements!general|)}%
 \indextext{conformance requirements|)}%
 
@@ -597,14 +459,7 @@ implementation need not evaluate part of an expression if it can deduce that its
 value is not used and that no
 \indextext{side effects}%
 side effects affecting the
-observable behavior of the program are produced.}\\
-本文档所描述的语义定义了参数化非确定性抽象机。本文档对符合规范的实现的具体结构不做要求。
-特别是，他们没有必要复制或模拟抽象机的结构。
-然而，符合规范的实现被要求模拟（也仅是）下面所解释的抽象机中可观测的行为
-\footnote{该条款有时候被称为 ``as-if'' 规则，因为实现可以自由的忽视本文档中的任何要求，
-只要结果就能够从程序可观测行为决定，\emph{as if} 已经遵守要求。
-作为实例，如果可以推理出表达式中某个值不会被用到并且没有 \indextext{side effects}%
-副作用会影响到程序提供的可观测行为，则一个实际实现不一定需要计算该表达式的一部分}。
+observable behavior of the program are produced.}
 
 \indextext{behavior!implementation-defined}%
 \pnum
@@ -616,13 +471,7 @@ and behavior in these respects.\footnote{This documentation also includes
 conditionally-supported constructs and locale-specific behavior.
 See~\ref{intro.compliance}.} Such documentation shall define the instance of the
 abstract machine that corresponds to that implementation (referred to as the
-``corresponding instance'' below). \\
-抽象机中的特定操作在本文档中描述为 implementation-defined（比如，
-\tcode{sizeof(int)}）。这些构成了抽象机的参数。
-每一个实现都应当包含描述这些特性以及这方面行为的文档
-\footnote{本文档还包含条件支持结构和本地化行为。详情请看~\ref{intro.compliance}。}。
-这些文档应当定义符合实现的抽象机的实例（参考下文中的 ``corresponding instance''）。
-
+``corresponding instance'' below). 
 \indextext{behavior!unspecified}%
 \pnum
 Certain other aspects and operations of the abstract machine are
@@ -632,87 +481,65 @@ function fails to allocate memory\iref{expr.new}). Where possible, this
 document defines a set of allowable behaviors. These
 define the nondeterministic aspects of the abstract machine. An instance
 of the abstract machine can thus have more than one possible execution
-for a given program and a given input. \\
-抽象机中其他特定方面和操作在本文档中描述为未指定的（比如，
-申请函数申请内存失败时，\grammarterm{new-initializer} 中表达式的计算\iref{expr.new}）。
-如果可能，本文档会定义一系列可被允许的行为。这些定义了抽象机中非决定性内容。
-因此一个抽象机实例对于一个给定的程序和给定的输入可以有多个可能的执行。
-
+for a given program and a given input. 
 \indextext{behavior!undefined}%
 \pnum
 Certain other operations are described in this document as
 undefined (for example, the effect of
 attempting to modify a const object).
 \begin{note} This document imposes no requirements on the
-behavior of programs that contain undefined behavior. \end{note} \\
-其他特定操作在本文档中描述为未定义（比如，尝试修改一个常量对象）。
-\begin{note} 本文档对包含未定义行为的程序的行为不做强制要求。\end{note}
-
+behavior of programs that contain undefined behavior. \end{note} 
 \indextext{program!well-formed}%
 \indextext{behavior!observable}%
 \pnum
 A conforming implementation executing a well-formed program shall
 produce the same observable behavior as one of the possible executions
 of the corresponding instance of the abstract machine with the
-same program and the same input. \\
-一个符合规范的实现执行一个符合规范的程序应当为具有相同程序和相同输入的抽象机示例
-提供相同的可观测的行为，以此作为对应的可能的执行情况之一。
+same program and the same input.
 \indextext{behavior!undefined}%
 However, if any such execution contains an undefined operation, this document places no
 requirement on the implementation executing that program with that input
 (not even with regard to operations preceding the first undefined
-operation). \\
-但是，如果任何包含未定义行为的执行，本文档对实现执行这种程序和输入不做要求
-（甚至是关于第一个未定义行为之前的操作）
+operation). 
 
 \indextext{conformance requirements}
 \pnum
-The least requirements on a conforming implementation are: \\
-一个符合规范的实现的最低要求是：
+The least requirements on a conforming implementation are:
 \begin{itemize}
 \item
 Accesses through volatile glvalues are evaluated strictly according to the
-rules of the abstract machine. \\
-通过 volatile glvalues 的访问需要严格的根据抽象机规则计算。
+rules of the abstract machine. 
 \item
 At program termination, all data written into files shall be
 identical to one of the possible results that execution of the program
-according to the abstract semantics would have produced. \\
-作为程序终止，写入到文件中的数据应当等价于执行程序根据抽象机语义所有能提供的结果中的一个。
+according to the abstract semantics would have produced. 
 \item
 The input and output dynamics of interactive devices shall take
 place in such a fashion that prompting output is actually delivered before a program waits for input. What constitutes an interactive device is
-\impldef{interactive device}. \\
-交互设备的输入和输出动态应当按照输出提示在程序等待输入之前真实的传达的风格进行。
-交互设备的构成是 
-\impldef{interactive device}。
+\impldef{interactive device}. 
 \end{itemize}
 
 These collectively are referred to as the
 \defnx{observable behavior}{behavior!observable} of the program.
 \begin{note} More stringent correspondences between abstract and actual
-semantics may be defined by each implementation. \end{note} \\
-这些被统称为一个程序的 \defnx{observable behavior}{behavior!observable}。
-\begin{note}抽象机和实际语义之间更为严苛的对应关系由每一个具体实现来定义。\end{note}
+semantics may be defined by each implementation. \end{note} 
 
 \pnum
 \indextext{operator!precedence of}%
 \indextext{expression!order of evaluation of}%
 \begin{note} Operators can be regrouped according to the usual
 mathematical rules only where the operators really are associative or
-commutative.运算符可以根据常规数学的结合律和交换律进行重新组合。
+commutative.
 \footnote{Overloaded operators are never assumed to be associative or
-commutative.\\
-重载过的运算符从不被认为具有结合律或交换律。
+commutative.
 }
-For example, in the following fragment 比如，在下面的代码片段中
+For example, in the following fragment
 \begin{codeblock}
 int a, b;
 @\commentellip@
 a = a + 32760 + b + 5;
 \end{codeblock}
-the expression statement behaves exactly the same as \\
-该表达式语句和下面的代码片段表现一样
+the expression statement behaves exactly the same as 
 \begin{codeblock}
 a = (((a + 32760) + b) + 5);
 \end{codeblock}
@@ -722,20 +549,14 @@ that result is then added to 5 which results in the value assigned to
 \tcode{a}. On a machine in which overflows produce an exception and in
 which the range of values representable by an \tcode{int} is
 \crange{-32768}{+32767}, the implementation cannot rewrite this
-expression as \\
-由于这些运算符具有关联性和优先级，因此 \tcode{(a+32760)} 的和会被加到 \tcode{b} 上，
-相应的结果随后被加上 5 ，最后结果被赋予给 \tcode{a}。
-在一个溢出会提供异常的机器上以及 \tcode{int} 的可表示范围为 \crange{-32768}{+32767}，
-则具体实现无法将该表达式重写为：
+expression as
 \begin{codeblock}
 a = ((a + b) + 32765);
 \end{codeblock}
 since if the values for \tcode{a} and \tcode{b} were, respectively,
 -32754 and -15, the sum \tcode{a + b} would produce an exception while
 the original expression would not; nor can the expression be rewritten
-either as \\
-这是因为 \tcode{a} 和 \tcode{b} 的值相应为 -32754 和 -15，\tcode{a + b} 的和将提供异常，而原表达式不会；
-表达式也不能重写为
+either as
 \begin{codeblock}
 a = ((a + 32765) + b);
 \end{codeblock}
@@ -748,10 +569,7 @@ respectively, 4 and -8 or -17 and 12. However on a machine in which
 overflows do not produce an exception and in which the results of
 overflows are reversible, the above expression statement can be
 rewritten by the implementation in any of the above ways because the
-same result will occur. \\
-这是因为 \tcode{a} 和 \tcode{b} 的值已经相应的变为 4 和 -8 或者 -17 和 12。
-但是在一个不会提供溢出异常以及溢出结果不可恢复的机器上，
-由于可以提供相同的结果，所以上面的表达式语句可以被具体实现按照上面任意表达式语句重写。
+same result will occur.
 \end{note}
 
 \rSec1[intro.structure]{Structure of this document}
@@ -762,9 +580,7 @@ same result will occur. \\
 \ref{lex} through \ref{cpp} describe the \Cpp{} programming
 language. That description includes detailed syntactic specifications in
 a form described in~\ref{syntax}. For convenience, \ref{gram}
-repeats all such syntactic specifications. \\
-\ref{lex} 到 \ref{cpp} 描述了 \Cpp{} 编程语言。该描述包括在~\ref{syntax}中秒速的句法规范细节。
-为了方便，\ref{gram} 重复了所有的句法规范。
+repeats all such syntactic specifications.
 
 \pnum
 \ref{\firstlibchapter} through \ref{\lastlibchapter} and \ref{depr}
@@ -773,29 +589,22 @@ That description includes detailed descriptions of the
 entities and macros
 that constitute the library, in a form described in \ref{library}. \\
 \ref{\firstlibchapter} 到 \ref{\lastlibchapter} 和 \ref{depr} 
-（\defn{library clauses} 描述了 \Cpp{} 标准库。
-其描述按照 \ref{library} 中描述的形式包括了构成库的条目以及宏的细节描述）
+
 
 \pnum
 \ref{implimits} recommends lower bounds on the capacity of conforming
-implementations. \\
-\ref{implimits} 推荐了一致性实现的最低边界容量。
+implementations. 
 
 \pnum
 \ref{diff} summarizes the evolution of \Cpp{} since its first
 published description, and explains in detail the differences between
 \Cpp{} and C\@. Certain features of \Cpp{} exist solely for compatibility
-purposes; \ref{depr} describes those features. \\
-\ref{diff} 总结了 \Cpp{} 自器第一版开始的改进，并详细的解释了 \Cpp{} 和 C\@ 之间的不同点。
-\Cpp{} 中的部分特性只是为了解决兼容性而存在；\ref{depr} 描述了这些特性。
-
+purposes; \ref{depr} describes those features.
 \pnum
 Throughout this document, each example is introduced by
 ``\noteintro{Example}'' and terminated by ``\noteoutro{example}''. Each note is
 introduced by ``\noteintro{Note}'' and terminated by ``\noteoutro{note}''. Examples
-and notes may be nested. \\ %
-贯穿整个文档，每一个以 ``\noteintro{Example}'' 开头，并以 ``\noteoutro{note}'' 结尾都会引入一个注解。
-示例和注解可能会嵌套。
+and notes may be nested.%
 \indextext{standard!structure of|)}
 
 \rSec1[syntax]{Syntax notation}
@@ -808,42 +617,29 @@ and characters in \tcode{constant} \tcode{width} type. Alternatives are
 listed on separate lines except in a few cases where a long set of
 alternatives is marked by the phrase ``one of''. If the text of an alternative is too long to fit on a line, the text is continued on subsequent lines indented from the first one.
 An optional terminal or non-terminal symbol is indicated by the subscript
-``\opt{\relax}'', so \\
-本文档中使用的记号格式，句法类别使用 \grammarterm{italic} 类型指示。
-可替代的记号使用分离的行列出，除了少数情况下会使用 ``one of'' 标记一个很长的可替代记号列表。
-如果可替代文本无法完全放在一行中，文本会在随后行中从第一个缩进。
-可选终止符或非终止符号由下标``\opt{\relax}''指示，所以
+``\opt{\relax}'', so
 
 \begin{ncbnf}
 \terminal{\{} \opt{expression} \terminal{\}}
 \end{ncbnf}
 
-indicates an optional expression enclosed in braces. \\ % 
-指示了一个使用花括弧闭合的可选表达式。
+indicates an optional expression enclosed in braces. %
 
 \pnum
 Names for syntactic categories have generally been chosen according to
-the following rules: \\
-用于句法类别的名字一般会根据下列规则选择：
+the following rules: 
 \begin{itemize}
 \item \grammarterm{X-name} is a use of an identifier in a context that
 determines its meaning (e.g., \grammarterm{class-name},
-\grammarterm{typedef-name}). \\
-\grammarterm{X-name} 是由上下文环境决定其意义的标识符（比如，\grammarterm{class-name}, 
-\grammarterm{typedef-name}）。
+\grammarterm{typedef-name}).
 \item \grammarterm{X-id} is an identifier with no context-dependent meaning
-(e.g., \grammarterm{qualified-id}). \\
-\grammarterm{X-id} 是不由上下文决定其意义的标识符（比如, \grammarterm{qualified-id}）。
+(e.g., \grammarterm{qualified-id}).
 \item \grammarterm{X-seq} is one or more \grammarterm{X}'s without intervening
 delimiters (e.g., \grammarterm{declaration-seq} is a sequence of
-declarations). \\
-\grammarterm{X-seq} 是一个或多个不被分隔符干扰的 \grammarterm{X}
-（比如，\grammarterm{declaration-seq} 是一个声明序列）。
+declarations). 
 \item \grammarterm{X-list} is one or more \grammarterm{X}'s separated by
 intervening commas (e.g., \grammarterm{identifier-list} is a sequence of
-identifiers separated by commas). \\
-\grammarterm{X-list} 是一个或多个被间插逗号分离的 \grammarterm{X}
-（比如，\grammarterm{identifier-list} 是一个被逗号分离的标识符序列）
+identifiers separated by commas).
 \end{itemize}%
 \indextext{notation!syntax|)}
 

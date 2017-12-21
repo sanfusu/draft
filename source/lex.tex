@@ -36,12 +36,7 @@ directive \tcode{\#include}, less any source lines skipped by any of the
 conditional inclusion\iref{cpp.cond} preprocessing directives, is
 called a \defn{translation unit}.
 \begin{note} A \Cpp{} program need not all be translated at the same time.
-\end{note} \\
-程序中按单元保存的文本在本文档中被称为
-\defnx{source files}{source file}。
-一个源文件和其所有的标头\iref{headers}和通过预处理指令\tcode{\#include}包含\iref{cpp.include}进来的源文件，
-减去任何通过条件包含\iref{cpp.cond}预处理指令跳过的源行，被称为一个 \defn{translation unit}。
-\begin{note} 一个 \Cpp{} 程序不必在同一时间被全部翻译。\end{note}
+\end{note}
 
 \pnum
 \begin{note} Previously translated translation units and instantiation
@@ -51,10 +46,7 @@ example) calls to functions whose identifiers have external linkage,
 manipulation of objects whose identifiers have external linkage, or
 manipulation of data files. Translation units can be separately
 translated and then later linked to produce an executable
-program\iref{basic.link}. \end{note} \\ %
-\begin{note} 先前已翻译的翻译单元和实例化单元可以被独立的保留或保留在库中。
-程序中独立的翻译单元通过（比如）调用具有外部联系标识符的函数、操控具有外部联系标识符的对象，或者操控数据文件进行通信\iref{basic.link}。
-翻译单元可以被独立的转换并稍后链接已提供一个可执行文件\iref{basic.link}。\end{note} %
+program\iref{basic.link}. \end{note} %
 \indextext{compilation!separate|)} 
 
 \rSec1[lex.phases]{Phases of translation}%
@@ -63,9 +55,7 @@ program\iref{basic.link}. \end{note} \\ %
 \indextext{translation!phases|(}%
 The precedence among the syntax rules of translation is specified by the
 following phases.\footnote{Implementations must behave as if these separate phases
-occur, although in practice different phases might be folded together.} \\
-翻译的句法规则之间的先后顺序由以下阶段指明
-\footnote{具体实现必须表现为这些独立截断都发生了，虽然实际过程中不同的阶段可能会被折叠。}。
+occur, although in practice different phases might be folded together.}
 
 \begin{enumerate}
 \indextext{character!source file}%
@@ -85,16 +75,7 @@ encoding, so long as an actual extended character encountered in the
 source file, and the same extended character expressed in the source
 file as a \grammarterm{universal-character-name} (e.g., using the \tcode{\textbackslash
 uXXXX} notation), are handled equivalently
-except where this replacement is reverted\iref{lex.pptoken} in a raw string literal. \\
-如有必要将以 \impldef{mapping physical source file characters to basic source character se}
-的方式映射物理源文件字符。可被接受的物理源文件字符集是 \impldef{physical source file
-characters}。
-任何不在基本源字符集中的源文件字符会被指示该字符的
-\indextext{universal character name}\grammarterm{universal-character-name} 替换。
-一个具体实现可使用任何内部编码，只要源文件中遇到的实际扩展字符和源文件中以
-\grammarterm{universal-character-name} 表示的相同扩展字符
-（比如，使用 \tcode{\textbackslash uXXXX} 记号）被等价处理，
-除非在原始字符串字面值中，这种替换被恢复\iref{lex.pptoken}。
+except where this replacement is reverted\iref{lex.pptoken} in a raw string literal.
 
 \indextext{line splicing}%
 \item Each instance of a backslash character (\textbackslash)
@@ -109,12 +90,7 @@ undefined. A source file that is not empty and that does not end in a new-line
 character, or that ends in a new-line character immediately preceded by a
 backslash character before any such splicing takes place,
 shall be processed as if an additional new-line character were appended
-to the file. \\
-每一个反斜杠字(\textbackslash)后面立即跟上的新行字符会被删除，将物理源行拼接成逻辑源行。
-任何物理源行的只有最后一个反斜杠可以合法的成为这种拼接的一部分。
-除了原始字符串字面值中恢复的拼接，如果一个拼接导致一个字符序列可以匹配 \grammarterm{universal-character-name} 的格式，
-则行为是未定义的。一个非空源文件并且不以新行字符结尾，或者在拼接之前以反斜杠字符后立即跟上的新行字符结尾，
-应当按照文件额外后缀新行字符做处理。
+to the file. 
 
 \item The source file is decomposed into preprocessing
 tokens\iref{lex.pptoken} and sequences of white-space characters
@@ -135,17 +111,7 @@ characters into preprocessing tokens is context-dependent.
 \begin{example}
 See the handling of \tcode{<} within a \tcode{\#include} preprocessing
 directive.
-\end{example} \\
-源文件被分解为预处理记号\iref{lex.pptoken}和空白字符序列（包括注释）。
-一个源文件不应当以部分预处理记号或者部分注释结尾\footnote{
-源文件以一个需要终止字符序列的多字符记号的第一个部分结束，
-比如缺少结束字符 \tcode{"} 或 \tcode{>} 的一个 \grammarterm{header-name} 将导致部分预处理记号。
-源文件以未必和 \tcode{/*} 的注释结尾将导致部分注释}。
-每一个注释会被一个空白字符代替。新行字符会被保留。除新行字符之外的空白字符的非空序列是被一个空白字符替换还是被保留是未指定的。
-分解源文件字符到预处理记号的过程是依赖于上下文环境的。
-\begin{example}
-详情请查看 \tcode{\#include} 预处理指令中关于 \tcode{<} 的处理
-\end{example}
+\end{example} 
 
 \item Preprocessing directives are executed, macro invocations are
 expanded, and \tcode{_Pragma} unary operator expressions are executed.
@@ -154,11 +120,7 @@ If a character sequence that matches the syntax of a
 concatenation\iref{cpp.concat}, the behavior is undefined. A
 \tcode{\#include} preprocessing directive causes the named header or
 source file to be processed from phase 1 through phase 4, recursively.
-All preprocessing directives are then deleted. \\
-预处理指令被执行，宏调用会被扩展，并且 \tcode{_Pragma} 一元运算符表达式会被执行。
-如果通过记号连结所提供的一个字符序列匹配到 \grammarterm{universal-character-name} 的格式，
-则是未定义行为。一个 \tcode{\#include} 预处理指令导致命名的标头或者源文件会从第 1 阶段到第 4 阶段递归处理。
-所有的预处理指令会被删除。
+All preprocessing directives are then deleted. 
 
 \item Each source character set member in a character literal or a string
 literal, as well as each escape sequence and \grammarterm{universal-character-name} in a
@@ -167,15 +129,9 @@ member of the execution character set~(\ref{lex.ccon}, \ref{lex.string}); if
 there is no corresponding member, it is converted to an \impldef{converting
 characters from source character set to execution character set} member other
 than the null (wide) character.\footnote{An implementation need not convert all
-non-corresponding source characters to the same execution character.} \\
-字符字面值或字符串字面值中的每一个源字符集成员以及每一个转义序列和
-单个字符字面值或非原始字符串字面值中的 \grammarterm{universal-character-name} 
-会被转换到执行字符集~(\ref{lex.ccon}, \ref{lex.string}) 中相应的成员；如果没有相应的成员，
-则会被转换为一个 \impldef{convertingcharacters from source character set to execution character set}
-成员，而不是空（宽）字符\footnote{一个具体实现不必将所有无对应的源字符转换到相同的执行字符中。}。
+non-corresponding source characters to the same execution character.} 
 
-\item Adjacent string literal tokens are concatenated. \\
-连结相邻的字符串字面值记号。
+\item Adjacent string literal tokens are concatenated.
 
 \item White-space characters separating tokens are no longer
 significant. Each preprocessing token is converted into a
@@ -187,13 +143,7 @@ tokens\iref{temp.names}.\end{note} \begin{note} Source files, translation
 units and translated translation units need not necessarily be stored as
 files, nor need there be any one-to-one correspondence between these
 entities and any external representation. The description is conceptual
-only, and does not specify any particular implementation. \end{note} \\
-空白字符分隔记号不在重要。\uwave{每一个预处理记号会被转换为一个记号 \iref{lex.token}。}
-结果记号会就句法和语义进行分析，并作为一个翻译单元进行转换。\begin{note}
-记号的分析和翻译过程可能会偶尔导致一个记号被一个其他记号序列\iref{temp.names}替换\end{note}
-\begin{note} 源文件，翻译单元和已被翻译的翻译单元不必存储为文件，也不必在这些条目和外部表现之间有着
-一对一的对应关系。这些描述只是理论上的，并不意指任何特殊的实现。\end{note}
-
+only, and does not specify any particular implementation. \end{note} 
 
 \item Translated translation units and instantiation units are combined
 as follows: \begin{note} Some or all of these may be supplied from a
@@ -211,25 +161,13 @@ are performed to produce
 \defn{instantiation units}. \begin{note} These are similar
 to translated translation units, but contain no references to
 uninstantiated templates and no template definitions. \end{note} The
-program is ill-formed if any instantiation fails. \\
-已翻译的翻译单元和实例化单元会像下面这样组合：
-\begin{note}可能会有一些或全部都是从一个库中提供的。\end{note}
-每一个已翻译的翻译单元会被检查，以便提供所需要的实例化。
-\begin{note} 这可能会包括已经显式请求\iref{temp.explicit}的实例化。\end{note}
-所要求的模板定义会被定位。翻译单元的源文件是否包含这些需要可获得的定义是 
-\impldef{whether source of translation units must be available to locate template definitions}
-\begin{note}一个实现可以将足够的信息编码到已翻译的翻译单元中，由此确保在此不需要源文件。\end{note}
-所有被要求的实例化会被执行，已提供 \defn{instantiation units}。\begin{note}
-这些和已翻译的翻译单元相似，但是不包含对未实例化的模板的应用，也不包含非模板定义。\end{note}
-如果任何实例化失败，则程序是不合规范的。
+program is ill-formed if any instantiation fails.
 
 \item All external entity references are resolved. Library
 components are linked to satisfy external references to
 entities not defined in the current translation. All such translator
 output is collected into a program image which contains information
-needed for execution in its execution environment. \\ %
-所有的外部条目引用都会被解析。库组件会被链接，以满足不在当前翻译单元中定义的条目的外部引用。
-所有的这种翻译器输出都会被收集到一个包含在其执行环境下执行所需信息的程序映像中。
+needed for execution in its execution environment. %
 \indextext{translation!phases|)}
 \end{enumerate}
 
@@ -469,10 +407,7 @@ Blanks, horizontal and vertical tabs, newlines, formfeeds, and comments
 as they serve to separate tokens. \begin{note} Some white space is
 required to separate otherwise adjacent identifiers, keywords, numeric
 literals, and alternative tokens containing alphabetic characters.
-\end{note} \\ %
-有五种记号：标识符、关键字、字面值\footnote{字面值包括字符串和字符以及数值字面值}、运算符和其他分隔符。
-空白，水平和垂直制表，新行，换页，和注释（统一称为``空白字符''），就像下文所描述的一样，除非作为分隔记号，否则都会被忽视。
-\begin{note}一些空白字符被要求用来分隔相邻的标识符，关键字，数字字面值，和包含字母字符可替代记号。\end{note}
+\end{note} %
 \indextext{token|)}
 
 \rSec1[lex.comment]{Comments}
@@ -531,12 +466,7 @@ characters \tcode{//} and \tcode{/*} have no special meaning within a
 \tcode{\#include} preprocessing directive (see~\ref{lex.pptoken}). \end{note}
 The sequences in both forms of \grammarterm{header-name}{s} are mapped in an
 \impldef{mapping header name to header or external source file} manner to headers or to
-external source file names as specified in~\ref{cpp.include}. \\
-\begin{note}
-头文件名预处理记号只会出现在 \tcode{\#incldue} 预处理指令中（详情请看~\ref{lex.pptoken}）。
-\end{note} \grammarterm{header-name}{s} 两种形式的序列都会以
-\impldef{mapping header name to header or external source file} 的方式
-映射到 ~\ref{cpp.include} 中指定的头文件名或外部源文件名。
+external source file names as specified in~\ref{cpp.include}.
 
 \pnum
 The appearance of either of the characters \tcode{'} or \tcode{\textbackslash} or of
@@ -572,8 +502,7 @@ depending on the implementation.}%
 \pnum
 Preprocessing number tokens lexically include all integer literal
 tokens\iref{lex.icon} and all floating literal
-tokens\iref{lex.fcon}. \\ 
-预处理数字几号词法包括所有的整型字面值记号\iref{lex.icon}和所有浮点字面值记号\iref{lex.fcon}。
+tokens\iref{lex.fcon}.
 
 \pnum
 A preprocessing number does not have a type or a value; it acquires both
@@ -629,7 +558,7 @@ character or sequence of characters may be used to encode the
 characters may produce a long external identifier, but \Cpp{} does not
 place a translation limit on significant characters for external
 identifiers. In \Cpp{}, upper- and lower-case letters are considered
-different for all identifiers, including external identifiers. }
+different for all identifiers, including external identifiers. } 
 
 \begin{floattable}{Ranges of characters allowed}{tab:charname.allowed}
 {lllll}
@@ -697,7 +626,7 @@ appearing in a certain context. When referred to in the grammar, these identifie
 are used explicitly rather than using the \grammarterm{identifier} grammar production.
 Unless otherwise specified, any ambiguity as to whether a given
 \grammarterm{identifier} has a special meaning is resolved to interpret the
-token as a regular \grammarterm{identifier}.
+token as a regular \grammarterm{identifier}. 
 
 \begin{floattable}{Identifiers with special meaning}{tab:identifiers.special}
 {ll}
@@ -712,7 +641,7 @@ token as a regular \grammarterm{identifier}.
 \indextext{reserved identifier}%
 In addition, some identifiers are reserved for use by \Cpp{}
 implementations and shall
-not be used otherwise; no diagnostic is required.
+not be used otherwise; no diagnostic is required. 
 \begin{itemize}
 \item
 Each identifier that contains a double underscore
@@ -721,12 +650,12 @@ Each identifier that contains a double underscore
 or begins with an underscore followed by
 an uppercase letter
 \indextext{uppercase}%
-is reserved to the implementation for any use.
+is reserved to the implementation for any use. 
 \item
 Each identifier that begins with an underscore is
 \indextext{character!underscore}%
 reserved to the implementation for use as a name in the global namespace.%
-\indextext{namespace!global}
+\indextext{namespace!global} 
 \end{itemize}%
 \indextext{identifier|)}
 
@@ -737,9 +666,7 @@ reserved to the implementation for use as a name in the global namespace.%
 \indextext{keyword|(}%
 The identifiers shown in Table~\ref{tab:keywords} are reserved for use
 as keywords (that is, they are unconditionally treated as keywords in
-phase 7) except in an \grammarterm{attribute-token}\iref{dcl.attr.grammar}: \\
-Table~\ref{tab:keywords} 中展示的标识符会被保留为关键字使用（也就是，在第 7 阶段，
-除 \grammarterm{attribute-token}\iref{dcl.attr.grammar} 中会被无条件的视为关键字：
+phase 7) except in an \grammarterm{attribute-token}\iref{dcl.attr.grammar}: 
 
 \begin{floattable}{Keywords}{tab:keywords}
 {lllll}
@@ -863,7 +790,7 @@ otherwise:
 \indextext{punctuator|(}%
 The lexical representation of \Cpp{} programs includes a number of
 preprocessing tokens which are used in the syntax of the preprocessor or
-are converted into tokens for operators and punctuators:
+are converted into tokens for operators and punctuators: 
 
 \begin{bnfkeywordtab}
 \nontermdef{preprocessing-op-or-punc} \textnormal{one of}\br
@@ -880,6 +807,8 @@ are converted into tokens for operators and punctuators:
 
 Each \grammarterm{preprocessing-op-or-punc} is converted to a single token
 in translation phase 7\iref{lex.phases}.%
+\indextext{punctuator|)}%
+\indextext{operator|)}%
 \indextext{punctuator|)}%
 \indextext{operator|)}
 
@@ -1771,9 +1700,7 @@ The effect of attempting to modify a string literal is undefined. \end{note}
 \pnum
 \indextext{Boolean literal}%
 The Boolean literals are the keywords \tcode{false} and \tcode{true}.
-Such literals are prvalues and have type \tcode{bool}. \\
-布尔字面值是关键字 \tcode{false} 和 \tcode{true}。
-这些字面值是纯右值并具有类型 \tcode{bool}。
+Such literals are prvalues and have type \tcode{bool}. 
 
 \rSec2[lex.nullptr]{Pointer literals}
 
@@ -1791,13 +1718,7 @@ The pointer literal is the keyword \tcode{nullptr}. It is a prvalue of type
 rather, a prvalue of this type is a null pointer constant and can be
 converted to a null pointer value or null member pointer value. See~\ref{conv.ptr}
 and~\ref{conv.mem}.
-\end{note} \\
-指针字面值是关键字 \tcode{nullptr}。这是类型为 \tcode{std::nullptr_t} 的纯右值。
-\begin{note}
-\tcode{std::nullptr_t} 是一个截然不同的类型，既不是一个指针类型，也不是一个指向成员的指针类型；
-该类型的一个纯右值是一个空指针常量并能被转换到一个空指针值或空成员指针值。详情请看~\ref{conv.ptr} 和 ~\ref{conv.mem}。
 \end{note}
-
 \rSec2[lex.ext]{User-defined literals}
 
 \indextext{literal!user-defined}%
