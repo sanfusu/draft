@@ -273,7 +273,8 @@ definition shall not begin with a \grammarterm{decltype-specifier}.
 \indextext{equivalence!type}%
 
 \pnum
-A class definition introduces a new type.
+A class definition introduces a new type.  \\ % BT
+一个类定义会引入一个新的类型。% ET
 \begin{example}
 
 \begin{codeblock}
@@ -284,14 +285,16 @@ Y a2;
 int a3;
 \end{codeblock}
 
-declares three variables of three different types. This implies that
+declares three variables of three different types. This implies that \\ %BT
+声明了三种不同类型的变量。也就是说 % ET
 
 \begin{codeblock}
 a1 = a2;                        // error: \tcode{Y} assigned to \tcode{X}
 a1 = a3;                        // error: \tcode{int} assigned to \tcode{X}
 \end{codeblock}
 
-are type mismatches, and that
+are type mismatches, and that \\ % BT
+类型匹配错误，并且 % ET
 
 \begin{codeblock}
 int f(X);
@@ -300,14 +303,17 @@ int f(Y);
 
 \indextext{overloading}%
 declare an overloaded\iref{over} function \tcode{f()} and not
-simply a single function \tcode{f()} twice. For the same reason,
+simply a single function \tcode{f()} twice. For the same reason, \\ % BT
+声明了一个重载\iref{over}函数 \tcode{f()} 且不是简单的重复单个函数 \tcode{f()} 两次。同样的理由， %
 
 \begin{codeblock}
 struct S { int a; };
 struct S { int a; };            // error, double definition
 \end{codeblock}
 
-is ill-formed because it defines \tcode{S} twice.
+is ill-formed because it defines \tcode{S} twice.  \\ % BT
+是不合规范的，因为它将 \tcode{S} 定义了两次。
+
 \end{example}
 
 \pnum
@@ -321,7 +327,9 @@ enclosing scope\iref{basic.scope}. If a class name is declared in a
 scope where a variable, function, or enumerator of the same name is also
 declared, then when both declarations are in scope, the class can be
 referred to only using an
-\grammarterm{elaborated-type-specifier}\iref{basic.lookup.elab}.
+\grammarterm{elaborated-type-specifier}\iref{basic.lookup.elab}. \\ % BT
+一个声明将类名引入到其声明所在的范围内并在其闭合范围\iref{basic.scope}内隐藏任何相同名字的类，变量，声明，函数或其他声明。
+如果类名所在范围内，同时声明了相同名字的变量，函数，或枚举器，然后如果两个声明都在范围内，则类只能通过\grammarterm{elaborated-type-specifier}\iref{basic.lookup.elab}来指示：% ET
 \begin{example}
 \begin{codeblock}
 struct stat {
@@ -343,7 +351,9 @@ void f() {
 A \grammarterm{declaration} consisting solely of \grammarterm{class-key}
 \grammarterm{identifier}\tcode{;} is either a redeclaration of the name in the current scope
 or a forward declaration of the identifier as a class name. It
-introduces the class name into the current scope.
+introduces the class name into the current scope.  \\ % BT
+一个仅包含 \grammarterm{class-key} 的 \grammarterm{declaration} 要么是当前范围内的重声明，或者
+作为类名的标识符超前重声明。 将类名引入到当前范围。% ET
 \begin{example}
 \begin{codeblock}
 struct s { int a; };
@@ -357,7 +367,8 @@ void g() {
 \end{codeblock}
 \end{example}
 \begin{note}
-Such declarations allow definition of classes that refer to each other.
+Such declarations allow definition of classes that refer to each other. \\ % BT
+种种声明允许类定义彼此互相指示。% ET
 \indextext{example!friend}%
 \begin{example}
 \begin{codeblock}

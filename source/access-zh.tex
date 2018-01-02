@@ -1,4 +1,4 @@
-%!TEX root = std.tex
+%!TEX root = std-zh.tex
 \rSec0[class.access]{Member access control}%
 \indextext{access control|(}
 
@@ -584,7 +584,10 @@ Such declarations give special access rights to the friends, but they
 do not make the nominated friends members of the befriending class.
 \begin{example}
 The following example illustrates the differences between
-members and friends:
+members and friends: // % BT
+一个类的 friend 是一个允许使用类中的私有和保护成员名的函数或者类。
+一个类通过友元声明指示其友元。
+\uwave{这种声明向其友元给出特殊的权限，但是并不会将友元作为被援助类的成员：}
 \indextext{friend function!member function and}%
 \indextext{example!friend function}%
 \indextext{example!member function}%
@@ -647,7 +650,10 @@ class Z {
 \end{codeblock}
 \end{example}
 
-A class shall not be defined in a friend declaration. \begin{example}
+A class shall not be defined in a friend declaration. \\  % BT
+一个类不因当作为一个友元声明定义 % ET
+\begin{example} 
+
 \begin{codeblock}
 class A {
   friend class B { };           // error: cannot define class in friend declaration
@@ -700,18 +706,22 @@ R<int> Ri;                      // OK: \tcode{"friend int;"} is ignored
 A function first declared in a friend declaration
 has the linkage of the namespace of which it is a member\iref{basic.link}.
 Otherwise, the function retains its previous linkage\iref{dcl.stc}.
+在友元声明中第一个声明的函数拥有其作为成员的命名空间的链接\iref{basic.link}。
+否则，该函数保留其原有的链接\iref{dcl.stc}。
 
 \pnum
 \indextext{declaration!overloaded name and \tcode{friend}}%
 When a friend
 declaration refers to an overloaded name or operator, only the function specified
 by the parameter types becomes a friend.
-A member function of a class
+A member function of a class 
 \tcode{X}
 can be a friend of
 a class
 \tcode{Y}.
-\indextext{member function!friend}%
+\indextext{member function!friend} \\ % BT
+当一个友元声明指示一个重载名或运算符，只有通过参数类型指定的函数是一个友元。类 \tcode{X} 的成员函数
+可以是类 \tcode{Y} 的一个友元。\indextext{member function!friend} % ET
 \begin{example}
 
 \begin{codeblock}
